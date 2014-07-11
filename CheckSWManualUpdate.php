@@ -203,7 +203,7 @@
 	}
 	if(!isset($img_url) || $img_url == "" || $usecustom){ //set img url
 		if($usecustom){
-			$img_url="http://snu.lge.com/epaks/";
+			$img_url="http://snu.lge.com/epks/";
 			$cdn_url=$img_url.$img_name;
 		} else {
 			$img_url="http://snu.lge.com/SWDownload.laf";
@@ -216,12 +216,12 @@
 		$rid=rand(882670000,882679999);
 	if(!isset($data) || $date == "")	
 		$gmt=gmdate("d M Y H:i:s", time())." GMT";
-	if(!isset($img_name) || $img_name == "" || !file_exists("$img_name")){
+	if(!isset($img_name) || $img_name == "" || !file_exists("epks/".$img_name)){
 		$logger->log("ERROR: EPK File ".$img_name." Missing!");
 		return_error(703,"EPK missing");
 	}
 	if(!isset($img_size) || $img_size == "")	
-		$img_size = filesize("$img_name");
+		$img_size = filesize("epks/".$img_name);
 	if(!isset($resultcode) || $resultcode == "")
 		$resultcode=900;	
 	if(!isset($forceflag) || $forceflag == "")
