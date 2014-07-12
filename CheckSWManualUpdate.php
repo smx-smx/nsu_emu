@@ -4,7 +4,9 @@
 		private $logfile;
 		public function initLog(){
 			date_default_timezone_set(date_default_timezone_get());
-			$this->logfile = "log_".date("d-m-y");
+			if(!is_dir("logs")) mkdir("logs");
+			chmod("logs", 0777);
+			$this->logfile = "logs/log_".date("d-m-y");
 			$logprefix="_";
 			$logpostfix=".log";
 			$logno=0;
@@ -12,6 +14,8 @@
 				$logno++;
 			}
 			$this->logfile.=$logprefix.$logno.$logpostfix;
+			touch($this->logfile);
+			chmod($this->logfile, 0666);
 		}
 		
 		public function __construct(){
@@ -86,6 +90,20 @@
 	$logger->log("#  Config Key ".$config_key);
 	$logger->log("#  Language Code ".$langcode);
 	$logger->log("#### END ####");
+	
+	$reqprefix="-";
+	$reqpostfix=".req";
+	$reqno=0;
+	if(!is_dir("requests")) mkdir("requests");
+	chmod("requests", 0777);
+	while(file_exists("requests/".$model_nm.$reqprefix.$reqno.$reqpostfix)){
+		$reqno++;
+	}
+	$fn = "requests/".$model_nm.$reqprefix.$reqno.$reqpostfix;
+	$logger->log("Dumping Request to ".$fn." ...");
+	file_put_contents($fn, $indata);
+	chmod($fn, 0666);
+	
 	
 	$usesourcefile = false; //assume we have to build the response
 	$foundconfig=false; //assume we have no config
@@ -251,7 +269,7 @@
 	$outdata.="</RESPONSE>";
 	$logger->log("Built Response: ");
 	$logger->log($outdata);
-	$logger->log("Sengind Response...");
+	$logger->log("Sending Response...");
 	return_data($outdata);
 	
 	
