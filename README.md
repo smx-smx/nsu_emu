@@ -1,10 +1,11 @@
-﻿NSU Emu by SMX:
---PREPARATION:
+#NSU Emu by SMX:
+PREPARATION:
+------------------
 You need to download and install XAMPP. You can get it from https://www.apachefriends.org/download.html
 After you're done installing XAMPP, download and install Dual DHCP DNS Server http://sourceforge.net/projects/dhcp-dns-server/
 *NOTE: DualServer should work on *Unix like OSes too, but you can aswell use an alternative SW like dnsmasq
 
---CONFIGURATION:
+CONFIGURATION:
 -------------------
 Open C:\Xampp\apache\conf\httpd.conf (or the equivalent on your OS) and add the following
 
@@ -57,12 +58,10 @@ Save the config and run "RunStandAlone.bat"
 Now you can check by opening a browser and going to "http://snu.lge.com" and "http://su.lge.com"
 It should point to the Apache directory listing with our files in
 
--------------------
+Now Create the new directory "nsu_emu" in "xampp/htdocs" and copy the files there
 
-Create the new directory "nsu_emu" in "xampp/htdocs" and copy the files there
-
+NSU CONFIGURATION:
 -------------------
-CONFIGURATION:
 edit server.cfg (check the file comments for details)
 create a folder named "epks" and store your epk files there
 eventually create a folder named "models" if you have custom hand-crafted response files in xml format you want to use (don't supply base64 encoded responses)
