@@ -1,4 +1,7 @@
 #NSU Emu by SMX:
+
+#NOTE: moved to https://github.com/openlgtv/nsu_emu
+
 PREPARATION:
 ------------------
 You need to download and install XAMPP. You can get it from https://www.apachefriends.org/download.html
